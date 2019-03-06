@@ -5,14 +5,14 @@
 \usepackage{listings}
 \lstset{
     basicstyle=\fontsize{10}{12}\selectfont\ttfamily,
-    keywordstyle=\color{blue},         
-    breaklines=true, 
+    keywordstyle=\color{blue},
+    breaklines=true,
     showtabs=false,
     showstringspaces=false,
     numberstyle=\tiny\color{mygray}
 }
 \usepackage{multirow}
-\usepackage{pslatex}        % pour un pdf plus lisible à l'écran
+\usepackage{pslatex}        % for better PDF on screen
 %\usepackage{textcomp}
 
 %\usetheme{AnnArbor}
@@ -51,8 +51,8 @@
 
 
 % contenu de la page de titre
-\title[Demystifying some challenges from LCSC 2019]{Lëtz Cybersecurity Challenge 2019}
-\subtitle{Demystifying some challenges}
+\title[Deconstructing some challenges from LCSC 2019]{Lëtz Cybersecurity Challenge 2019}
+\subtitle{Deconstructing some challenges}
 \author{C\'{e}dric Bonhomme}
 \institute[SMILE]{Security Made In Lëtzebuerg}
 \date{March 09, 2019}
@@ -80,7 +80,7 @@
 \end{frame}
 
 
-% --------- Sommaire ---------
+% --------- Summary ---------
 \begin{frame}
     \frametitle{Contents}
     \tableofcontents
@@ -131,8 +131,31 @@ From the feedbacks we got it seems that the majority of participants used Wiresh
 \begin{frame}
 \frametitle{}
 \begin{itemize}
-    \item tcpdump, BPF, Wireshark;
-    \item little exercices with BPF filters, etc. solution of the challenge.
+\item tcpdump, BPF, Wireshark;
+\item little exercices with BPF filters, etc. solution of the challenge.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Wireshark}
+\begin{itemize}
+\item Wireshark is a graphical network packet analysis tool.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Wireshark}
+\framesubtitle{Look at a single TCP connection}
+\begin{itemize}
+\item
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Wireshark}
+\framesubtitle{Search for specific packets}
+\begin{itemize}
+\item
 \end{itemize}
 \end{frame}
 
@@ -238,12 +261,18 @@ How did you solved these challenges?
     \end{columns}
 \end{frame}
 \subsection{Presentation and related challenges}
-\begin{frame}
-\frametitle{What is steganography?}
+\begin{frame}[fragile]
+\frametitle{Presentation}
 \begin{itemize}
-    \item steganography is the art and science of writing hidden messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message, a form of security through obscurity.
-    \item steganography is not cryptography.
+    \item steganography is the art and science of writing hidden messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message, a form of security through obscurity;
+    \item steganography \textbf{is not} cryptography;
+    \item the message can be hidden in different kind of data: pictures, video, sound, network traffic, printed steganography.
+    \item different techniques: using metadata, using the red portion of a pixel, Least Significant Bit, etc.
 \end{itemize}
+\begin{lstlisting}[language=Bash]
+$ zip text-to-hide.zip text-to-hide.txt
+$ cat song.ogg test-to-hide.zip > song-1.ogg
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}
@@ -279,6 +308,17 @@ Replace odd components by 255 and even by 0.
 \begin{center}
     \includegraphics[width=12.0cm]{./images/vesta_steg_zoom.png}
 \end{center}
+\bigskip
+Steganalysis is too easy! What can we do? Let put some mess!
+\end{frame}
+
+\begin{frame}
+\frametitle{Detection - Parity steganalysis}
+\begin{center}
+\includegraphics[width=12.0cm]{./images/vesta_steg_zoom.png}
+\end{center}
+\bigskip
+Steganalysis is too easy! What can we do? Let put some mess!
 \end{frame}
 
 
