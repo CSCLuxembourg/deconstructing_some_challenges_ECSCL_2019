@@ -72,7 +72,9 @@
     \frametitle{What is this workshop about?}
     \begin{center}
         \begin{itemize}
-            \item we will present and deconstruct some challenges fron \href{https://github.com/cscluxembourg/vestatech}{LCSC 2019}.
+            \item we will present and deconstruct \href{https://github.com/cscluxembourg/vestatech}{some challenges} of the Lëtz Cybersecurity Challenge 2019;
+            \item in the framework of the ENISA European Cyber Security Challenge;
+            \item not yet registered ? Let's go: \href{https://vestatech.cybersecuritychallenge.lu}{https://vestatech.cybersecuritychallenge.lu}
         \end{itemize}
     \end{center}
 \end{frame}
@@ -137,25 +139,49 @@ From the feedbacks we got it seems that the majority of participants used Wiresh
 \begin{frame}
 \frametitle{Wireshark}
 \begin{itemize}
-\item Wireshark is a graphical network packet analysis tool.
+    \item Wireshark is a graphical network packet analysis tool.
+    \item promiscious mode: ifconfig eth0 promisc
+    \item other interception methods: bridge interception, honeypot, etc.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Wireshark}
-\framesubtitle{Look at a single TCP connection}
-\begin{itemize}
-\item
-\end{itemize}
+\framesubtitle{Follow TCP stream}
+\begin{center}
+    \includegraphics[height=6.5cm, width=12.0cm]{./images/Wireshark_follow_tcp_stream.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Wireshark}
 \framesubtitle{Search for specific packets}
 \begin{itemize}
-\item
+    \item \texttt{frame contains "mozilla"};
+    \item \texttt{tcp.port == 443};
+    \item \texttt{dns.resp.len > 0};
+    \item \texttt{ip.addr == 52.7.23.87}.
 \end{itemize}
 \end{frame}
+
+\begin{frame}
+\frametitle{tcpdump and Berkeley Packet Filter}
+\framesubtitle{}
+\begin{itemize}
+    \item provides a raw interface to data link layers (between link-level driver and the user space);
+    \item \texttt{tcpdump -i eth0 -vv 'tcp[0:2] > 1024'}: matching any TCP traffic with a source port $>$ 1024;
+    \item 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Solution with Wireshark}
+\begin{center}
+    \includegraphics[height=6.5cm, width=12.0cm]{./images/Wireshark_follow_http_stream.png}
+\end{center}
+\end{frame}
+ 
 
 
 \begin{frame}[fragile]
@@ -299,15 +325,6 @@ How did you solved these challenges?
 Replace odd components by 255 and even by 0.
 
 (132, 247, 123) $\longrightarrow$ (0, 255, 255)
-\end{frame}
-
-\begin{frame}
-\frametitle{Detection - Parity steganalysis}
-\begin{center}
-    \includegraphics[width=12.0cm]{./images/vesta_steg_zoom.png}
-\end{center}
-\bigskip
-Steganalysis is too easy! What can we do? Let put some mess!
 \end{frame}
 
 \begin{frame}
