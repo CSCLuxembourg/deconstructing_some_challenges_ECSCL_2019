@@ -35,7 +35,7 @@
 %\usetheme{Warsaw}
 
 % Force full screen
-\hypersetup{pdfpagemode=FullScreen}
+% \hypersetup{pdfpagemode=FullScreen}
 
 % Barre de navigation
 \setbeamertemplate{navigation symbols}{%
@@ -83,7 +83,14 @@
 % --------- Summary ---------
 \begin{frame}
     \frametitle{Contents}
-    \tableofcontents
+    \begin{columns}[t]
+        \begin{column}{5cm}
+            \tableofcontents[sections={1-3}]
+        \end{column}
+        \begin{column}{5cm}
+            \tableofcontents[sections={4-5}]
+        \end{column}
+    \end{columns}
 \end{frame}
 % ----------------------------
 
@@ -94,13 +101,13 @@
 %
 \section{Network analysis}
 \begin{frame}
-    \frametitle{Contents}
+    \frametitle{Network analysis}
     \begin{columns}[t]
         \begin{column}{5cm}
-            \tableofcontents[sections={1-2}, currentsection, hideothersubsections]
+            \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
         \end{column}
         \begin{column}{5cm}
-            \tableofcontents[sections={3-4}, currentsection, hideothersubsections]
+            \tableofcontents[sections={4-5}, currentsection, hideothersubsections]
         \end{column}
     \end{columns}
 \end{frame}
@@ -218,21 +225,22 @@ for i, line in enumerate(data):
 %
 \section{A little cryptography with RSA}
 \begin{frame}
-    \frametitle{Contents}
+    \frametitle{A little cryptography with RSA}
     \begin{columns}[t]
         \begin{column}{5cm}
-            \tableofcontents[sections={1-2}, currentsection, hideothersubsections]
+            \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
         \end{column}
         \begin{column}{5cm}
-            \tableofcontents[sections={3-4}, currentsection, hideothersubsections]
+            \tableofcontents[sections={4-5}, currentsection, hideothersubsections]
         \end{column}
     \end{columns}
 \end{frame}
 \subsection{Presentation and related challenges}
 \begin{frame}
 \frametitle{Presentation}
+\framesubtitle{RSA}
 \begin{itemize}
-    \item
+    \item Rivest, Shamir and Adelman
 \end{itemize}
 \end{frame}
 
@@ -277,18 +285,19 @@ How did you solved these challenges?
     \frametitle{Contents}
     \begin{columns}[t]
         \begin{column}{5cm}
-            \tableofcontents[sections={1-2}, currentsection, hideothersubsections]
+            \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
         \end{column}
         \begin{column}{5cm}
-            \tableofcontents[sections={3-4}, currentsection, hideothersubsections]
+            \tableofcontents[sections={4-5}, currentsection, hideothersubsections]
         \end{column}
     \end{columns}
 \end{frame}
 \subsection{Presentation and related challenges}
 \begin{frame}[fragile]
 \frametitle{Presentation}
+\framesubtitle{Steganography}
 \begin{itemize}
-    \item steganography is the art and science of writing hidden messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message, a form of security through obscurity;
+    \item hiding messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message, a form of security through obscurity;
     \item steganography \textbf{is not} cryptography;
     \item the message can be hidden in different kind of data: pictures, video, sound, network traffic, printed steganography.
     \item different techniques: using metadata, using the red portion of a pixel, Least Significant Bit, etc.
@@ -357,6 +366,52 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
 
 
 
+
+%
+% SECTION: Enigma
+%
+\section{Old school cryptography}
+\begin{frame}
+    \frametitle{Old school cryptography}
+    \begin{columns}[t]
+        \begin{column}{5cm}
+            \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
+        \end{column}
+        \begin{column}{5cm}
+            \tableofcontents[sections={4-5}, currentsection, hideothersubsections]
+        \end{column}
+    \end{columns}
+\end{frame}
+\subsection{Presentation and related challenges}
+\begin{frame}
+\frametitle{Presentation}
+\framesubtitle{RSA}
+\begin{itemize}
+    \item Enigma
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Related challenge}
+\begin{itemize}
+    \item \href{https://github.com/cscluxembourg/vestatech/tree/master/challenges/the-missing-piece}{A piece of the prototype is missing} - 1 star;
+\end{itemize}
+\bigskip
+How did you solved this challenge?
+\end{frame}
+
+\begin{frame}
+\frametitle{Solution}
+\begin{center}
+    \includegraphics[height=6.5cm, width=12.0cm]{./images/Enigma_solution.png}
+\end{center}
+\end{frame}
+
+
+
+
+
+
 %
 % SECTION: End of the presentation
 %
@@ -367,6 +422,7 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
     \begin{center}
         \begin{itemize}
             \item Thanks for listening.
+            \item Wich challenge did you enjoyed the most?
             \item Any questions?
         \end{itemize}
     \end{center}
