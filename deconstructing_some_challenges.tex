@@ -37,14 +37,14 @@
 % Force full screen
 % \hypersetup{pdfpagemode=FullScreen}
 
-% Barre de navigation
+% Navigation menu
 \setbeamertemplate{navigation symbols}{%
-    \insertslidenavigationsymbol
-    \insertframenavigationsymbol
-    \insertsubsectionnavigationsymbol
-    \insertsectionnavigationsymbol
-    \insertdocnavigationsymbol
-    \insertbackfindforwardnavigationsymbol
+%     \insertslidenavigationsymbol
+%     \insertframenavigationsymbol
+%     \insertsubsectionnavigationsymbol
+%     \insertsectionnavigationsymbol
+%     \insertdocnavigationsymbol
+%     \insertbackfindforwardnavigationsymbol
 }
 
 
@@ -75,7 +75,7 @@
 
 
 %
-% SECTION: End of the presentation
+% SECTION: What is this workshop about?
 %
 \section*{What is this workshop about?}
 \begin{frame}
@@ -140,20 +140,14 @@ From the feedbacks we got it seems that the majority of participants used Wiresh
 \begin{frame}
 \frametitle{Presentation}
 \framesubtitle{}
-
-\end{frame}
-
-
-
-
-\subsection{Tools}
-\begin{frame}
-\frametitle{}
 \begin{itemize}
 \item tcpdump, BPF, Wireshark;
 \item little exercices with BPF filters, etc. solution of the challenge.
 \end{itemize}
 \end{frame}
+
+
+
 
 \begin{frame}
 \frametitle{Wireshark}
@@ -262,8 +256,9 @@ How did you solved these challenges?
 
 \begin{frame}
 \frametitle{Related challenges - Sergei forgot his formula}
+\framesubtitle{Do you know how is generated a RSA key?}
 \begin{center}
-    \includegraphics[height=6.5cm, width=12.0cm]{./images/RSA-algo-key-generation.png}
+    \includegraphics[height=6.2cm, width=12.0cm]{./images/RSA-algo-key-generation.png}
 \end{center}
 \href{https://en.wikipedia.org/wiki/RSA_(cryptosystem)\#Decryption}{Super easy} ;-)
 \end{frame}
@@ -271,10 +266,11 @@ How did you solved these challenges?
 
 \begin{frame}
 \frametitle{Related challenges - A key from the past}
-\framesubtitle{A weakest point of RSA}
+\framesubtitle{A weakness of RSA: the \textit{quality} of your key}
 \begin{center}
-    \includegraphics[height=6.5cm, width=12.0cm]{./images/RSA-weak-prime-factors.png}
+    \includegraphics[height=6.2cm, width=12.0cm]{./images/RSA-weak-prime-factors.png}
 \end{center}
+And random implementation flaws...
 \end{frame}
 
 
@@ -352,7 +348,8 @@ How did you solved these challenges?
 \frametitle{Presentation}
 \framesubtitle{Steganography}
 \begin{itemize}
-    \item hiding messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message, a form of security through obscurity;
+    \item hiding messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message;
+    \item a form of security through obscurity;
     \item steganography \textbf{is not} cryptography;
     \item the message can be hidden in different kind of data: pictures, video, sound, network traffic, printed steganography.
     \item different techniques: using metadata, using the red portion of a pixel, Least Significant Bit, etc.
@@ -367,8 +364,9 @@ $ cat song.ogg test-to-hide.zip > song-1.ogg
 
 \begin{frame}
 \frametitle{A picture can hide a lot of things...}
+\framesubtitle{Background picture of the VestaTech challenge platform}
 \begin{center}
-    \includegraphics[height=6.0cm, width=12.0cm]{./images/vesta.png}
+    \includegraphics[height=6.2cm, width=12.0cm]{./images/vesta.png}
 \end{center}
 ... thankfully, two gentle clues were placed on the VestaTech website.
 \end{frame}
@@ -389,16 +387,20 @@ Replace odd components by 255 and even by 0.
 \includegraphics[width=12.0cm]{./images/vesta_steg_zoom.png}
 \end{center}
 \bigskip
+So, now?
+
+\bigskip
+Try here with this tool: \href{https://stegano-web.herokuapp.com}{https://stegano-web.herokuapp.com}
+
+\bigskip 
 Steganalysis is too easy! What can we do? Let put some mess!
 \end{frame}
 
-
-\subsection{Tools}
 \begin{frame}
-\frametitle{}
-\begin{itemize}
-    \item \href{https://github.com/topics/steganography}{a lot of tools} are available;
-\end{itemize}
+\frametitle{Sergei, our chief scientific officer}
+\begin{center}
+    \includegraphics[height=6.0cm, width=10.0cm]{./images/Sergei.png}
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -415,7 +417,13 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
 \end{lstlisting}
 \end{frame}
 
-
+\section{Tools}
+\begin{frame}
+\frametitle{}
+\begin{itemize}
+    \item \href{https://github.com/topics/steganography}{a lot of tools} are available.
+\end{itemize}
+\end{frame}
 
 
 
@@ -482,6 +490,7 @@ How did you solved this challenge?
         \begin{itemize}
             \item Thanks for listening.
             \item Wich challenge did you enjoyed the most?
+            \item What's your opinion? Do you want more difficult challenges for the next year?
             \item Any questions?
         \end{itemize}
     \end{center}
