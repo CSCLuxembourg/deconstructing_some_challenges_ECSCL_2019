@@ -54,8 +54,18 @@
 \author{C\'{e}dric Bonhomme}
 \institute[SMILE]{Security Made In Lëtzebuerg}
 \date{March 09, 2019}
-% \logo{\includegraphics[height=0.5cm]{./images/logo_crpht-soft.png}}
-% Fin du préambule
+
+% \logo{\includegraphics[height=0.5cm]{./images/logo.png}}
+\newsavebox{\logoA}
+\newsavebox{\logoB}
+\savebox{\logoA}{\includegraphics[width=2.5cm]{./images/logo-circl.png}}
+\savebox{\logoB}{\includegraphics[width=2.5cm]{./images/logo.png}}
+\titlegraphic{%
+  \raisebox{.5\dimexpr\ht\logoB-\ht\logoA}{\usebox{\logoA}}% raise smaller logo into position
+  \hspace*{5cm}%
+  \usebox{\logoB}
+}
+% End of preamble
 
 
 \begin{document}
@@ -111,24 +121,26 @@
         \end{column}
     \end{columns}
 \end{frame}
-\subsection{Presentation and related challenges}
-\begin{frame}
-\frametitle{Presentation}
-\framesubtitle{}
-
-\end{frame}
-
-
+ 
+\subsection{Related challenge}
 \begin{frame}
 \frametitle{Related challenge}
 \begin{itemize}
-    \item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/find-the-author/gift.cap}{Find the author. The line was not secured.} - 1 star;
+    \item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/find-the-author/gift.cap}{Find the author. The line was not secured.} - 1 star (super easy);
 \end{itemize}
 \bigskip
 How did you solved this challenge?
 
 \bigskip
 From the feedbacks we got it seems that the majority of participants used Wireshark.
+\end{frame}
+
+
+\subsection{Presentation}
+\begin{frame}
+\frametitle{Presentation}
+\framesubtitle{}
+
 \end{frame}
 
 
@@ -164,7 +176,7 @@ From the feedbacks we got it seems that the majority of participants used Wiresh
 \frametitle{Wireshark}
 \framesubtitle{Search for specific packets}
 \begin{itemize}
-    \item \texttt{frame contains "mozilla"};
+    \item \texttt{frame contains "gift"};
     \item \texttt{tcp.port == 443};
     \item \texttt{dns.resp.len > 0};
     \item \texttt{ip.addr == 52.7.23.87}.
@@ -175,7 +187,7 @@ From the feedbacks we got it seems that the majority of participants used Wiresh
 \frametitle{tcpdump and Berkeley Packet Filter}
 \framesubtitle{}
 \begin{itemize}
-    \item provides a raw interface to data link layers (between link-level driver and the user space);
+    \item BPF provides a raw interface to data link layers (between link-level driver and the user space);
     \item \texttt{tcpdump -i eth0 -vv 'tcp[0:2] > 1024'}: matching any TCP traffic with a source port $>$ 1024;
     \item 
 \end{itemize}
@@ -187,6 +199,7 @@ From the feedbacks we got it seems that the majority of participants used Wiresh
 \begin{center}
     \includegraphics[height=6.5cm, width=12.0cm]{./images/Wireshark_follow_http_stream.png}
 \end{center}
+The size of the pcap is \textit{almost} the size of the data...
 \end{frame}
  
 
@@ -221,11 +234,11 @@ for i, line in enumerate(data):
 
  
 %
-% SECTION: RSA
+% SECTION: Gentle introduction to RSA
 %
-\section{A little cryptography with RSA}
+\section{Gentle introduction to RSA}
 \begin{frame}
-    \frametitle{A little cryptography with RSA}
+    \frametitle{Gentle introduction to RSA}
     \begin{columns}[t]
         \begin{column}{5cm}
             \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
@@ -235,15 +248,8 @@ for i, line in enumerate(data):
         \end{column}
     \end{columns}
 \end{frame}
-\subsection{Presentation and related challenges}
-\begin{frame}
-\frametitle{Presentation}
-\framesubtitle{RSA}
-\begin{itemize}
-    \item Rivest, Shamir and Adelman
-\end{itemize}
-\end{frame}
 
+\subsection{Related challenges}
 \begin{frame}
 \frametitle{Related challenges}
 \begin{itemize}
@@ -265,10 +271,48 @@ How did you solved these challenges?
 
 \begin{frame}
 \frametitle{Related challenges - A key from the past}
+\framesubtitle{A weakest point of RSA}
 \begin{center}
     \includegraphics[height=6.5cm, width=12.0cm]{./images/RSA-weak-prime-factors.png}
 \end{center}
 \end{frame}
+
+
+
+\subsection{Presentation}
+\begin{frame}
+\frametitle{Presentation}
+\framesubtitle{Diffie}
+\begin{columns}
+    \begin{column}{5cm}
+        \begin{center}
+            \includegraphics[height=6.0cm, width=4.0cm]{./images/Whitfield_Diffie_Royal_Society.jpg}
+        \end{center}
+    \end{column}
+    \begin{column}{5cm}
+        \begin{itemize}
+            \item Diffie
+        \end{itemize}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Presentation}
+\framesubtitle{Hellmann}
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Presentation}
+\framesubtitle{Hellmann}
+
+
+\end{frame}
+
+
 
 
 
@@ -292,7 +336,18 @@ How did you solved these challenges?
         \end{column}
     \end{columns}
 \end{frame}
-\subsection{Presentation and related challenges}
+\subsection{Related challenge}
+\begin{frame}
+\frametitle{Related challenges}
+\begin{itemize}
+    \item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/Vesta-asteroid/vesta.png}{Vesta asteroid} - 2 stars.
+    \item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/sergei/Sergei.png}{Sergei, our chief scientific officer} - 3 stars;
+\end{itemize}
+\bigskip
+How did you solved these challenges?
+\end{frame}
+
+\subsection{Presentation}
 \begin{frame}[fragile]
 \frametitle{Presentation}
 \framesubtitle{Steganography}
@@ -308,15 +363,7 @@ $ cat song.ogg test-to-hide.zip > song-1.ogg
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}
-\frametitle{Related challenges}
-\begin{itemize}
-    \item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/Vesta-asteroid/vesta.png}{Vesta asteroid} - 2 stars.
-    \item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/sergei/Sergei.png}{Sergei, our chief scientific officer} - 3 stars;
-\end{itemize}
-\bigskip
-How did you solved these challenges?
-\end{frame}
+
 
 \begin{frame}
 \frametitle{A picture can hide a lot of things...}
@@ -359,6 +406,11 @@ Steganalysis is too easy! What can we do? Let put some mess!
 \begin{lstlisting}[language=Bash]
 $ wget https://raw.githubusercontent.com/cscluxembourg/vestatech/master/challenges/sergei/Sergei.png
 $ stegano-lsb reveal -i Sergei.png
+\end{lstlisting}
+Not yet the solution but close... Maybe the metadata will hel you.\\Just saying.
+\bigskip
+
+\begin{lstlisting}[language=Bash]
 $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
 \end{lstlisting}
 \end{frame}
@@ -368,11 +420,11 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
 
 
 %
-% SECTION: Enigma
+% SECTION: Fun with old crypto
 %
-\section{Old school cryptography}
+\section{Fun with old crypto}
 \begin{frame}
-    \frametitle{Old school cryptography}
+    \frametitle{Fun with old crypto}
     \begin{columns}[t]
         \begin{column}{5cm}
             \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
@@ -382,23 +434,27 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
         \end{column}
     \end{columns}
 \end{frame}
-\subsection{Presentation and related challenges}
-\begin{frame}
-\frametitle{Presentation}
-\framesubtitle{RSA}
-\begin{itemize}
-    \item Enigma
-\end{itemize}
-\end{frame}
-
+\subsection{Related challenges}
 \begin{frame}
 \frametitle{Related challenge}
+\framesubtitle{Enigma}
 \begin{itemize}
     \item \href{https://github.com/cscluxembourg/vestatech/tree/master/challenges/the-missing-piece}{A piece of the prototype is missing} - 1 star;
 \end{itemize}
 \bigskip
 How did you solved this challenge?
 \end{frame}
+
+\subsection{Presentation}
+\begin{frame}
+\frametitle{Presentation}
+\framesubtitle{Enigma}
+\begin{itemize}
+    \item 
+\end{itemize}
+\end{frame}
+
+
 
 \begin{frame}
 \frametitle{Solution}
@@ -407,6 +463,9 @@ How did you solved this challenge?
 \end{center}
 \end{frame}
 
+
+
+\subsection{Tools}
 
 
 
