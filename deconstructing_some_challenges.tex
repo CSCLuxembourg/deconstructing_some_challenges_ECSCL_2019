@@ -58,8 +58,8 @@
 % \logo{\includegraphics[height=0.5cm]{./images/logo.png}}
 \newsavebox{\logoA}
 \newsavebox{\logoB}
-\savebox{\logoA}{\includegraphics[width=2.5cm]{./images/logo-circl.png}}
-\savebox{\logoB}{\includegraphics[width=2.5cm]{./images/logo.png}}
+\savebox{\logoA}{\includegraphics[width=4.0cm]{./images/logo-circl.png}}
+\savebox{\logoB}{\includegraphics[width=3.0cm]{./images/logo.png}}
 \titlegraphic{%
   \raisebox{.5\dimexpr\ht\logoB-\ht\logoA}{\usebox{\logoA}}% raise smaller logo into position
   \hspace*{5cm}%
@@ -85,28 +85,24 @@
             \item we will present and deconstruct \href{https://github.com/cscluxembourg/vestatech}{some challenges} of the Lëtz Cybersecurity Challenge 2019;
             \item in the framework of the ENISA European Cyber Security Challenge;
             \item not yet registered ? Let's go: \href{https://vestatech.cybersecuritychallenge.lu}{https://vestatech.cybersecuritychallenge.lu}
+            \item I won't give you all solutions.
         \end{itemize}
     \end{center}
 \end{frame}
 
 
 % --------- Summary ---------
+\setcounter{tocdepth}{1}
 \begin{frame}
-    \frametitle{Contents}
-    \begin{columns}[t]
-        \begin{column}{5cm}
-            \tableofcontents[sections={1-3}]
-        \end{column}
-        \begin{column}{5cm}
-            \tableofcontents[sections={4-5}]
-        \end{column}
-    \end{columns}
+    \frametitle{Summary at a glance}
+    \tableofcontents
 \end{frame}
+\setcounter{tocdepth}{4}
 % ----------------------------
 
 
 
-%
+% 
 % SECTION: Network analysis
 %
 \section{Network analysis}
@@ -121,7 +117,7 @@
         \end{column}
     \end{columns}
 \end{frame}
- 
+
 \subsection{Related challenge}
 \begin{frame}
 \frametitle{Related challenge}
@@ -221,99 +217,8 @@ for i, line in enumerate(data):
  
 
 
- 
-
- 
- 
-
- 
-%
-% SECTION: Gentle introduction to RSA
-%
-\section{Gentle introduction to RSA}
-\begin{frame}
-    \frametitle{Gentle introduction to RSA}
-    \begin{columns}[t]
-        \begin{column}{5cm}
-            \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
-        \end{column}
-        \begin{column}{5cm}
-            \tableofcontents[sections={4-5}, currentsection, hideothersubsections]
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\subsection{Related challenges}
-\begin{frame}
-\frametitle{Related challenges}
-\begin{itemize}
-    \item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/Sergei_forgot_his_formula/wip.py}{Sergei forgot his formula} - 2 stars;
-    \item \href{https://github.com/cscluxembourg/vestatech/tree/master/challenges/A_key_from_the_past}{A key from the past} - 3 stars.
-\end{itemize}
-\bigskip
-How did you solved these challenges?
-\end{frame}
-
-\begin{frame}
-\frametitle{Related challenges - Sergei forgot his formula}
-\framesubtitle{Do you know how is generated a RSA key?}
-\begin{center}
-    \includegraphics[height=6.2cm, width=12.0cm]{./images/RSA-algo-key-generation.png}
-\end{center}
-\href{https://en.wikipedia.org/wiki/RSA_(cryptosystem)\#Decryption}{Super easy} ;-)
-\end{frame}
 
 
-\begin{frame}
-\frametitle{Related challenges - A key from the past}
-\framesubtitle{A weakness of RSA: the \textit{quality} of your key}
-\begin{center}
-    \includegraphics[height=6.2cm, width=12.0cm]{./images/RSA-weak-prime-factors.png}
-\end{center}
-And random implementation flaws...
-\end{frame}
-
-
-
-\subsection{Presentation}
-\begin{frame}
-\frametitle{Presentation}
-\framesubtitle{Diffie}
-\begin{columns}
-    \begin{column}{5cm}
-        \begin{center}
-            \includegraphics[height=6.0cm, width=4.0cm]{./images/Whitfield_Diffie_Royal_Society.jpg}
-        \end{center}
-    \end{column}
-    \begin{column}{5cm}
-        \begin{itemize}
-            \item Diffie
-        \end{itemize}
-    \end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}
-\frametitle{Presentation}
-\framesubtitle{Hellmann}
-
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Presentation}
-\framesubtitle{Hellmann}
-
-
-\end{frame}
-
-
-
-
-
-
-\subsection{Tools}
 
 
 
@@ -345,8 +250,8 @@ How did you solved these challenges?
 
 \subsection{Presentation}
 \begin{frame}[fragile]
-\frametitle{Presentation}
-\framesubtitle{Steganography}
+\frametitle{What is steganography?}
+\framesubtitle{}
 \begin{itemize}
     \item hiding messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message;
     \item a form of security through obscurity;
@@ -409,7 +314,7 @@ Steganalysis is too easy! What can we do? Let put some mess!
 $ wget https://raw.githubusercontent.com/cscluxembourg/vestatech/master/challenges/sergei/Sergei.png
 $ stegano-lsb reveal -i Sergei.png
 \end{lstlisting}
-Not yet the solution but close... Maybe the metadata will hel you.\\Just saying.
+Not yet the solution but close... Maybe the metadata will help you.\\Just saying.
 \bigskip
 
 \begin{lstlisting}[language=Bash]
@@ -417,9 +322,10 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
 \end{lstlisting}
 \end{frame}
 
-\subsection{Tools}
+
 \begin{frame}
-\frametitle{}
+\frametitle{A pythonic solution}
+\framesubtitle{Tools}
 \begin{itemize}
     \item \href{https://github.com/topics/steganography}{a lot of tools} are available.
 \end{itemize}
@@ -428,11 +334,11 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
 
 
 %
-% SECTION: Fun with old crypto
+% SECTION: Symetric cryptography
 %
-\section{Fun with old crypto}
+\section{Symetric cryptography}
 \begin{frame}
-    \frametitle{Fun with old crypto}
+    \frametitle{Content}
     \begin{columns}[t]
         \begin{column}{5cm}
             \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
@@ -444,21 +350,22 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
 \end{frame}
 \subsection{Related challenges}
 \begin{frame}
-\frametitle{Related challenge}
-\framesubtitle{Enigma}
+\frametitle{Related challenges}
+\framesubtitle{}
 \begin{itemize}
+    \item 
     \item \href{https://github.com/cscluxembourg/vestatech/tree/master/challenges/the-missing-piece}{A piece of the prototype is missing} - 1 star;
 \end{itemize}
 \bigskip
-How did you solved this challenge?
+How did you solved these challenges?
 \end{frame}
 
 \subsection{Presentation}
 \begin{frame}
-\frametitle{Presentation}
-\framesubtitle{Enigma}
+\frametitle{Enigma}
+\framesubtitle{}
 \begin{itemize}
-    \item 
+    \item rotor
 \end{itemize}
 \end{frame}
 
@@ -473,7 +380,90 @@ How did you solved this challenge?
 
 
 
-\subsection{Tools}
+
+
+
+%
+% SECTION: Asymetric cryptography
+%
+\section{Asymetric cryptography}
+\begin{frame}
+\frametitle{Asymetric cryptography}
+\begin{columns}[t]
+\begin{column}{5cm}
+\tableofcontents[sections={1-3}, currentsection, hideothersubsections]
+\end{column}
+\begin{column}{5cm}
+\tableofcontents[sections={4-5}, currentsection, hideothersubsections]
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\subsection{Presentation}
+\begin{frame}
+\frametitle{Who ? When ? How ?}
+\framesubtitle{}
+\begin{columns}
+\begin{column}{5cm}
+\begin{center}
+\includegraphics[height=6.0cm, width=4.0cm]{./images/Whitfield_Diffie_Royal_Society.jpg}
+\end{center}
+\end{column}
+\begin{column}{5cm}
+\begin{itemize}
+    \item cryptography with public key. Diffie Hellman in 1975
+    \item keys exchange: Diffie Hellman and Merkle in 1976
+    \item RSA: Rivest, Shamir, Adleman in 1977
+    \item PGP (asymetric and symetric): Philip Zimmermann in 1991
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Examples}
+\framesubtitle{}
+\begin{itemize}
+    \item Secure Socket Layer, Transport Layer Security;
+    \item Secure Electronic Transaction;
+    \item Elliptic curve.
+\end{itemize}
+\end{frame}
+
+
+\subsection{Related challenges}
+\begin{frame}
+\frametitle{Related challenges}
+\begin{itemize}
+\item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/Sergei_forgot_his_formula/wip.py}{Sergei forgot his formula} - 2 stars;
+\item \href{https://github.com/cscluxembourg/vestatech/tree/master/challenges/A_key_from_the_past}{A key from the past} - 3 stars.
+\item \href{https://github.com/cscluxembourg/vestatech/tree/master/challenges/SecureBox}{SecureBox} - 2 stars. \textit{This time with a real key}.
+\end{itemize}
+\bigskip
+How did you solved these challenges?
+\end{frame}
+
+\begin{frame}
+\frametitle{Sergei forgot his formula}
+\framesubtitle{Do you know how is generated a RSA key?}
+\begin{center}
+\includegraphics[height=6.2cm, width=12.0cm]{./images/RSA-algo-key-generation.png}
+\end{center}
+\href{https://en.wikipedia.org/wiki/RSA_(cryptosystem)\#Decryption}{Super easy} ;-)
+\end{frame}
+
+
+\begin{frame}
+\frametitle{A key from the past}
+\framesubtitle{A weakness of RSA: the \textit{quality} of your key}
+\begin{center}
+\includegraphics[height=6.2cm, width=12.0cm]{./images/RSA-weak-prime-factors.png}
+\end{center}
+And random implementation flaws...
+\end{frame}
+
+
 
 
 
