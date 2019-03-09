@@ -212,13 +212,16 @@ $tcp[2:2] < 1024$
 
 \begin{frame}
 \frametitle{Little exercice 2}
-Filter \textit{source ip equal to destination ip}
+Filter \textit{source ip equal to destination ip} (classic land attack)
 \end{frame}
 
 \begin{frame}
 \frametitle{Little exercice 2}
 \framesubtitle{Solution}
 $ip[12:4] = ip[16:4]$
+
+\vspace{3cm}
+You can do really complex queries.
 \end{frame}
 
 
@@ -409,17 +412,11 @@ Bits manipulations:
 
 
 \begin{frame}
-\frametitle{Enigma}
+\frametitle{Something fun: Enigma}
 \framesubtitle{}
 \begin{center}
-\includegraphics[height=7.0cm, width=5.5cm]{./images/768px-EnigmaMachineLabeled.jpg}
+\includegraphics[height=7.0cm, width=5.5cm]{./images/Enigma_machine.png}
 \end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{My Enigma machine}
-\framesubtitle{}
-
 \end{frame}
 
 
@@ -431,7 +428,7 @@ Bits manipulations:
     \item \href{https://github.com/cscluxembourg/vestatech/tree/master/challenges/the-missing-piece}{A piece of the prototype is missing} - 1 star;
 \end{itemize}
 \bigskip
-How did you solved these challenges?
+How did you solved this challenge?
 \end{frame}
 
 
@@ -439,7 +436,7 @@ How did you solved these challenges?
 \begin{frame}
 \frametitle{Solution}
 \begin{center}
-    \includegraphics[height=6.5cm, width=12.0cm]{./images/Enigma_solution.png}
+    \includegraphics[width=12.0cm]{./images/Enigma_solution1.png}
 \end{center}
 \end{frame}
 
@@ -481,6 +478,7 @@ How did you solved these challenges?
     \item keys exchange: Diffie Hellman and Merkle in 1976
     \item RSA: Rivest, Shamir, Adleman in 1977
     \item PGP (asymetric and symetric): Philip Zimmermann in 1991
+    \item how? see first RSA related challenge...
 \end{itemize}
 \end{column}
 \end{columns}
