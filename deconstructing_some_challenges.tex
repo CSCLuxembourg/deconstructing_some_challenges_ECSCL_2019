@@ -107,7 +107,7 @@
 %
 \section{Network analysis}
 \begin{frame}
-    \frametitle{Network analysis}
+    \frametitle{Summary}
     \begin{columns}[t]
         \begin{column}{5cm}
             \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
@@ -118,45 +118,34 @@
     \end{columns}
 \end{frame}
 
-\subsection{Related challenge}
-\begin{frame}
-\frametitle{Related challenge}
-\begin{itemize}
-    \item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/find-the-author/gift.cap}{Find the author. The line was not secured.} - 1 star (super easy);
-\end{itemize}
-\bigskip
-How did you solved this challenge?
-
-\bigskip
-From the feedbacks we got it seems that the majority of participants used Wireshark.
-\end{frame}
-
-
 \subsection{Presentation}
 \begin{frame}
 \frametitle{Presentation}
 \framesubtitle{}
 \begin{itemize}
-\item tcpdump, BPF, Wireshark;
-\item little exercices with BPF filters, etc. solution of the challenge.
+    \item analysis of network captures;
+    \item \textbf{Wireshark} is a popular graphical network packet analysis tool;
+    \item promiscious mode: \texttt{ifconfig eth0 promisc}
+    \item other interception methods: bridge interception, honeypot.
 \end{itemize}
-\end{frame}
-
-
-
-
-\begin{frame}
-\frametitle{Wireshark}
+Some tools:
 \begin{itemize}
-    \item Wireshark is a graphical network packet analysis tool.
-    \item promiscious mode: ifconfig eth0 promisc
-    \item other interception methods: bridge interception, honeypot, etc.
+    \item Berkeley Packet Filter (BPF), tcpdump,  tcpslice;
+    \item tshark;
+    \item tcpflow;
+    \item ssldump;
+    \item Libpcap libraries, pypacker;
+    \item visualization tools;
+    \item ...
 \end{itemize}
 \end{frame}
 
+
+
+
 \begin{frame}
 \frametitle{Wireshark}
-\framesubtitle{Follow TCP stream}
+\framesubtitle{Example: Follow TCP stream}
 \begin{center}
     \includegraphics[height=6.5cm, width=12.0cm]{./images/Wireshark_follow_tcp_stream.png}
 \end{center}
@@ -164,7 +153,7 @@ From the feedbacks we got it seems that the majority of participants used Wiresh
 
 \begin{frame}
 \frametitle{Wireshark}
-\framesubtitle{Search for specific packets}
+\framesubtitle{Example: Search for specific packets}
 \begin{itemize}
     \item \texttt{frame contains "gift"};
     \item \texttt{tcp.port == 443};
@@ -176,11 +165,76 @@ From the feedbacks we got it seems that the majority of participants used Wiresh
 \begin{frame}
 \frametitle{tcpdump and Berkeley Packet Filter}
 \framesubtitle{}
+
+BPF provides a raw interface to data link layers (between link-level driver and the user space).
+
+\bigskip
+
+Example of filter with tcpdump:
+
+
+\hspace{1cm}matching any TCP traffic with a source port $>$ 1024:\\
+\hspace{2cm}\texttt{tcpdump -i eth0 -vv 'tcp[0:2] > 1024'}
+
+\bigskip
+
+You probably already used tcpdump to simply capture a network traffic.
+\end{frame}
+
+\begin{frame}
+\frametitle{TCP header}
+\begin{center}
+\includegraphics[width=10.0cm]{./images/TCP-Header.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{IP header}
+\begin{center}
+\includegraphics[width=10.0cm]{./images/IP-Header.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Little exercice 1}
+Filter \textit{destination port less than 1024}
+\end{frame}
+
+\begin{frame}
+\frametitle{Little exercice 1}
+\framesubtitle{Solution}
+$tcp[2:2] < 1024$
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Little exercice 2}
+Filter \textit{source ip equal to destination ip}
+\end{frame}
+
+\begin{frame}
+\frametitle{Little exercice 2}
+\framesubtitle{Solution}
+$ip[12:4] = ip[16:4]$
+\end{frame}
+
+
+
+
+\subsection{Related challenge}
+\begin{frame}
+\frametitle{Related challenge}
 \begin{itemize}
-    \item BPF provides a raw interface to data link layers (between link-level driver and the user space);
-    \item \texttt{tcpdump -i eth0 -vv 'tcp[0:2] > 1024'}: matching any TCP traffic with a source port $>$ 1024;
-    \item 
+\item \href{https://github.com/cscluxembourg/vestatech/blob/master/challenges/find-the-author/gift.cap}{Find the author. The line was not secured.} - 1 star (super easy);
 \end{itemize}
+\bigskip
+How did you solved this challenge?
+
+\bigskip
+From the feedbacks we got, it seems that the majority of participants used Wireshark.
 \end{frame}
 
 
@@ -189,7 +243,7 @@ From the feedbacks we got it seems that the majority of participants used Wiresh
 \begin{center}
     \includegraphics[height=6.5cm, width=12.0cm]{./images/Wireshark_follow_http_stream.png}
 \end{center}
-The size of the pcap is \textit{almost} the size of the data...
+The size of the pcap is almost the size of the payload (and not encrypted).
 \end{frame}
  
 
@@ -227,7 +281,7 @@ for i, line in enumerate(data):
 %
 \section{Steganography}
 \begin{frame}
-    \frametitle{Contents}
+    \frametitle{Summary}
     \begin{columns}[t]
         \begin{column}{5cm}
             \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
@@ -237,7 +291,25 @@ for i, line in enumerate(data):
         \end{column}
     \end{columns}
 \end{frame}
-\subsection{Related challenge}
+\subsection{Presentation}
+\begin{frame}[fragile]
+\frametitle{What is steganography?}
+\framesubtitle{}
+\begin{itemize}
+\item hiding messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message;
+\item a form of security through obscurity;
+\item steganography \textbf{is not} cryptography;
+\item the message can be hidden in different kind of data: pictures, video, sound, network traffic, printed steganography.
+\item different techniques: using metadata, using the red portion of a pixel, Least Significant Bit, etc.
+\end{itemize}
+\begin{lstlisting}[language=Bash]
+$ zip text-to-hide.zip text-to-hide.txt
+$ cat song.ogg test-to-hide.zip > song-1.ogg
+\end{lstlisting}
+\end{frame}
+
+
+\subsection{Related challenges}
 \begin{frame}
 \frametitle{Related challenges}
 \begin{itemize}
@@ -247,25 +319,6 @@ for i, line in enumerate(data):
 \bigskip
 How did you solved these challenges?
 \end{frame}
-
-\subsection{Presentation}
-\begin{frame}[fragile]
-\frametitle{What is steganography?}
-\framesubtitle{}
-\begin{itemize}
-    \item hiding messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message;
-    \item a form of security through obscurity;
-    \item steganography \textbf{is not} cryptography;
-    \item the message can be hidden in different kind of data: pictures, video, sound, network traffic, printed steganography.
-    \item different techniques: using metadata, using the red portion of a pixel, Least Significant Bit, etc.
-\end{itemize}
-\begin{lstlisting}[language=Bash]
-$ zip text-to-hide.zip text-to-hide.txt
-$ cat song.ogg test-to-hide.zip > song-1.ogg
-\end{lstlisting}
-\end{frame}
-
-
 
 \begin{frame}
 \frametitle{A picture can hide a lot of things...}
@@ -323,22 +376,13 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
 \end{frame}
 
 
-\begin{frame}
-\frametitle{A pythonic solution}
-\framesubtitle{Tools}
-\begin{itemize}
-    \item \href{https://github.com/topics/steganography}{a lot of tools} are available.
-\end{itemize}
-\end{frame}
-
-
 
 %
 % SECTION: Symetric cryptography
 %
 \section{Symetric cryptography}
 \begin{frame}
-    \frametitle{Content}
+    \frametitle{Summary}
     \begin{columns}[t]
         \begin{column}{5cm}
             \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
@@ -348,25 +392,46 @@ $ stegano-lsb-set reveal -i Sergei.png -g fibonacci -s 9
         \end{column}
     \end{columns}
 \end{frame}
-\subsection{Related challenges}
+\subsection{Presentation}
+\begin{frame}
+\frametitle{Examples}
+\framesubtitle{}
+\begin{itemize}
+    \item César, Vigenère, Hill, Enigma;
+\end{itemize}
+Bits manipulations:
+\begin{itemize}
+    \item DES, 3DES, AES (Rijndael);
+    \item Blowfish.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Enigma}
+\framesubtitle{}
+\begin{center}
+\includegraphics[height=7.0cm, width=5.5cm]{./images/768px-EnigmaMachineLabeled.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{My Enigma machine}
+\framesubtitle{}
+
+\end{frame}
+
+
+\subsection{Related challenge}
 \begin{frame}
 \frametitle{Related challenges}
 \framesubtitle{}
 \begin{itemize}
-    \item 
     \item \href{https://github.com/cscluxembourg/vestatech/tree/master/challenges/the-missing-piece}{A piece of the prototype is missing} - 1 star;
 \end{itemize}
 \bigskip
 How did you solved these challenges?
-\end{frame}
-
-\subsection{Presentation}
-\begin{frame}
-\frametitle{Enigma}
-\framesubtitle{}
-\begin{itemize}
-    \item rotor
-\end{itemize}
 \end{frame}
 
 
@@ -388,7 +453,7 @@ How did you solved these challenges?
 %
 \section{Asymetric cryptography}
 \begin{frame}
-\frametitle{Asymetric cryptography}
+\frametitle{Summary}
 \begin{columns}[t]
 \begin{column}{5cm}
 \tableofcontents[sections={1-3}, currentsection, hideothersubsections]
@@ -479,9 +544,8 @@ And random implementation flaws...
     \begin{center}
         \begin{itemize}
             \item Thanks for listening.
-            \item Wich challenge did you enjoyed the most?
+            \item Which challenge did you enjoyed the most?
             \item What's your opinion? Do you want more difficult challenges for the next year?
-            \item Any questions?
         \end{itemize}
     \end{center}
 \end{frame}
